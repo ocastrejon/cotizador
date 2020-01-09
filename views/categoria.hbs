@@ -1,0 +1,46 @@
+{{> header }}
+
+<body style="width: 98.9vw; height:100vh">
+    
+    <section class="menuBar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Categorías</a>
+            {{> menu}}
+        </nav>
+    </section>
+
+    <section style="justify-content:center; width:100%; margin-bottom: 100px;">
+        <section style="justify-content:center; width:80%; margin:auto;">
+            <form action="categoria/crearCategoria" method="POST">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <input class="form-control" name="categoria" value="" placeholder="Nombre" required>
+                    </div>
+                    <button type="submit" class="col-sm-1 btn btn-success">Nuevo</button>
+                </div>
+            </form>
+            {{#each type}}
+                <hr>
+                <form action="categoria/actualizarCategoria" method="POST">
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_categoria" value="{{id_categoria}}" required>
+                        <label  class="col-sm-1 col-form-label">Nombre:</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="categoria" value="{{categoria}}" required>
+                        </div>
+                        <button type="submit" class="col-sm-1 btn btn-warning">Modificar</button>
+                    </div>
+                </form>
+                <form action="categoria/eliminarCategoria" method="POST">
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_categoria" value="{{id_categoria}}" required>
+                        <label  class="col-sm-5 col-form-label"></label>
+                        <button type="submit" class="col-sm-1 btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            {{/each}}
+        </section>
+    </section>
+</body>
+
+{{> footer}}

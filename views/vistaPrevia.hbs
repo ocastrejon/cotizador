@@ -1,0 +1,105 @@
+{{> header }}
+
+<body style="width: 98.9vw; height:100vh">
+    
+    <section class="menuBar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Elementos</a>
+            {{> menu}}
+        </nav>
+    </section>
+
+    <section style="justify-content:center; width:100%; margin-bottom: 100px;">
+        <section style="justify-content:center; width:80%; margin:auto;">
+            {{#each productos}}
+                <div class="form-group row">
+                    <label  class="col-sm-5 col-form-label">Materiales</label>
+                    <label  class="col-sm-2 col-form-label">{{elementos.0.producto}}</label>
+                </div>
+                {{#each elementos}}
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_elemento" value="{{id_elemento}}" required>
+                        <input hidden class="form-control" name="id_proyecto" value="{{id_proyecto}}" required>
+                        <input hidden class="form-control" name="id_producto" value="{{id_producto}}" required>
+                        <div class="col-sm-5">
+                            <input class="form-control" name="material" disabled="true" value="{{categoria}}, {{clase}}, {{medida}}, {{tamanio}}, {{proveedor}}.  ${{precio}}" required>
+                        </div>
+                        <div class="col-sm-1">
+                            <input class="form-control" name="cantidad" disabled="true" value="{{cantidad}}" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="medida" disabled="true" value="{{largo}} X {{ancho}} X {{grosor}}" required>
+                        </div>
+                        <div class="col-sm-1">
+                            <input class="form-control" name="pies" disabled="true" value="{{pies}} ft." required>
+                        </div>
+                        <div class="col-sm-1">
+                            <input class="form-control importe" name="importe" disabled="true" value="{{importe}}" required>
+                        </div>
+                    </div>
+                {{/each}}
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Extras </label>
+                </div>
+                {{#each extras}}
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_extra" value="{{id_extra}}" required>
+                        <input hidden class="form-control" name="id_producto" value="{{id_producto}}" required>
+                        <input hidden class="form-control" name="id_proyecto" value="{{id_proyecto}}" required>
+                        <div class="col-sm-5">
+                            <input class="form-control" name="extra" disabled="true" value="{{extra}}" required>
+                        </div>
+                        <label  class="col-sm-4 col-form-label"></label>
+                        <div class="col-sm-1">
+                            <input class="form-control importe" name="importe" disabled="true" value="{{importe}}" required>
+                        </div>
+                    </div>
+                {{/each}}
+                <div class="form-group row">
+                    <label  class="col-sm-9 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Totales</label>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Suma de Importes</label>
+                    <input  class="col-sm-1 form-control subtotal importe herramientas indirectos utilidad sumaImportes" disabled="true" value="">
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Herramientas 5%</label>
+                    <input  class="col-sm-1 form-control subtotal herramientas sumaHerramientas" disabled="true" value="">
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Indirectos 10%</label>
+                    <input  class="col-sm-1 form-control subtotal indirectos sumaIndirectos" disabled="true" value="">
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Utilidad 30%</label>
+                    <input  class="col-sm-1 form-control subtotal utilidad sumaUtilidad" disabled="true" value="">
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Subtotal</label>
+                    <input  class="col-sm-1 form-control total iva subtotal sumaSubtotal" disabled="true" value="">
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">IVA 16%</label>
+                    <input  class="col-sm-1 form-control total iva sumaIva" disabled="true" value="">
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-7 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label">Total</label>
+                    <input  class="col-sm-1 form-control total sumaTotal" disabled="true" value="">
+                </div>
+                <hr>
+                <br>
+            {{/each}}
+        </section>
+    </section>
+</body>
+
+{{> footer}}
+<script src="./javascripts/vistaPrevia.js"></script>

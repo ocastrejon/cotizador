@@ -1,0 +1,40 @@
+{{> header }}
+
+<body style="width: 98.9vw; height:100vh">
+    
+    <section class="menuBar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Imágenes</a>
+            {{> menu}}
+        </nav>
+    </section>
+
+    <section style="justify-content:center; width:100%; margin-bottom: 100px;">
+        <section style="justify-content:center; width:80%; margin:auto;">
+
+            <form method="post" enctype="multipart/form-data" action="imagen/upload">
+                <input type="file" name="file" required>
+                <input type="submit" value="Subir">
+            </form>
+
+            {{#each type}}
+                <hr>
+                <label>{{this}}</label>
+                <div class="form-group row">
+                    <br>
+                    <img src="../imagenes/{{this}}" width="10%" alt="">
+                    <br>
+                </div>
+                <form action="imagen/eliminarImagen" method="POST">
+                    <div class="form-group row">
+                        <input hidden name="imagenName" value="{{this}}">
+                        <button type="submit" class="col-sm-1 btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            {{/each}}
+
+        </section>
+    </section>
+</body>
+
+{{> footer}}

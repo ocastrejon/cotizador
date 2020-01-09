@@ -1,0 +1,96 @@
+{{> header }}
+
+<body style="width: 98.9vw; height:100vh">
+
+    <section class="menuBar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Materiales</a>
+            {{> menu}}
+        </nav>
+    </section>
+
+    <section style="justify-content:center; width:100%; margin-bottom: 100px;">
+        <section style="justify-content:center; width:80%; margin:auto;">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Categoria</label>
+                <label class="col-sm-2 col-form-label">Clase</label>
+                <label class="col-sm-1 col-form-label">Medida</label>
+                <label class="col-sm-2 col-form-label">Tamaño</label>
+                <label class="col-sm-1 col-form-label">Precio</label>
+                <label class="col-sm-2 col-form-label">Proveedor</label>
+            </div>
+            <form action="material/crearMaterial" method="POST">
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <select class="custom-select custom-select-lg mb-3" name="categoria" required>
+                            <option>Selecciona</option>
+                            {{#each categoria}}
+                                <option value="{{id_categoria}}">{{categoria}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="custom-select custom-select-lg mb-3" name="clase" required>
+                            <option>Selecciona</option>
+                            {{#each clase}}
+                                <option value="{{id_clase}}">{{clase}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <input class="form-control" name="medida" placeholder="Medida" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="custom-select custom-select-lg mb-3" name="tamanio" required>
+                            <option>Selecciona</option>
+                            {{#each tamanio}}
+                                <option value="{{id_tamanio}}">{{tamanio}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <input class="form-control" name="precio" placeholder="Precio" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="custom-select custom-select-lg mb-3" name="proveedor" required>
+                            <option>Selecciona</option>
+                            {{#each proveedor}}
+                                <option value="{{id_proveedor}}">{{proveedor}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <button type="submit" class="col-sm-1 btn btn-success">Nuevo</button>
+                </div>
+            </form>
+            <hr>
+            {{#each material}}
+            <form action="material/eliminarMaterial" method="POST">
+                <div class="form-group row">
+                    <input hidden class="form-control" name="id_material" value="{{id_material}}">
+                    <div class="col-sm-2">
+                        <input class="form-control" name="categoria" value="{{categoria}}" disabled="true">
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="clase" value="{{clase}}" disabled="true">
+                    </div>
+                    <div class="col-sm-1">
+                        <input class="form-control" name="medida" value="{{medida}}" disabled="true">
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="tamanio" value="{{tamanio}}" disabled="true">
+                    </div>
+                    <div class="col-sm-1">
+                        <input class="form-control" name="precio" value="{{precio}}" disabled="true">
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="proveedor" value="{{proveedor}}" disabled="true">
+                    </div>
+                    <button type="submit" class="col-sm-1 btn btn-danger">Eliminar</button>
+                </div>
+            </form>
+            {{/each}}
+        </section>
+    </section>
+</body>
+
+{{> footer}}

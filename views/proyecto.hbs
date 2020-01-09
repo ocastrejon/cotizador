@@ -1,0 +1,89 @@
+{{> header }}
+
+<body style="width: 98.9vw; height:100vh">
+    
+    <section class="menuBar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Proyectos</a>
+            {{> menu }}
+        </nav>
+    </section>
+
+    <section style="justify-content:center; width:100%; margin-bottom: 100px;">
+        <section style="justify-content:center; width:80%; margin:auto;">
+            <form action="proyecto/crearProyecto" method="POST">
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Nombre del proyecto:</label>
+                    <label  class="col-sm-2 col-form-label">Prefijo Cliente:</label>
+                    <label  class="col-sm-2 col-form-label">Nombre Cliente:</label>
+                    <label  class="col-sm-2 col-form-label">Apellido Cliente:</label>
+                    <label  class="col-sm-2 col-form-label">Empresa Cliente:</label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <input class="form-control" name="nombre_proyecto" value="" placeholder="Nombre" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="custom-select custom-select-lg mb-3" name="prefijo_interesado" value="" required>
+                            <option value="">Selecciona</option>
+                            <option value="Ing">Ing.</option>
+                            <option value="Lic">Lic.</option>
+                            <option value="Arq">Arq.</option>
+                            <option value="Dr">Dr.</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="nombre_interesado" value="" placeholder="Nombre" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="apellido_interesado" value="" placeholder="Apellido" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control" name="empresa_interesado" value="" placeholder="Empresa" required>
+                    </div>
+                    <button type="submit" class="col-sm-1 btn btn-success">Nuevo</button>
+                </div>
+            </form>
+            {{#each type}}
+                <hr>
+                <form action="producto" method="GET">
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_proyecto" value="{{id_proyecto}}" required>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="nombre_proyecto" disabled="true" value="{{nombre_proyecto}}" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="prefijo_interesado" disabled="true" value="{{prefijo_interesado}}" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="nombre_interesado" disabled="true" value="{{nombre_interesado}}" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="apellido_interesado" disabled="true" value="{{apellido_interesado}}" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" name="empresa_interesado" disabled="true" value="{{empresa_interesado}}" required>
+                        </div>
+                        <button type="submit" class="col-sm-1 btn btn-warning">Cotizar</button>
+                    </div>
+                </form>
+                <form action="vistaPrevia" method="GET">
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_proyecto" value="{{id_proyecto}}" required>
+                        <label class="col-sm-10 col-form-label"></label>
+                        <button type="submit" class="col-sm-1 btn btn-primary">Vista Previa</button>
+                    </div>
+                </form>
+                <form action="imprimir" method="POST">
+                    <div class="form-group row">
+                        <input hidden class="form-control" name="id_proyecto" value="{{id_proyecto}}" required>
+                        <label class="col-sm-10 col-form-label"></label>
+                        <button type="submit" class="col-sm-1 btn btn-info">Imprimir</button>
+                    </div>
+                </form>
+            {{/each}}
+        </section>
+    </section>
+</body>
+
+{{> footer}}
